@@ -12,11 +12,10 @@ program
   .option("-n, --name <type>", "user name")
   .option("-e, --email <type>", "user email")
   .option("-p, --phone <type>", "user phone");
-program.parse();
-const options = program.opts();
+
+program.parse(process.argv);
 
 const argv = program.opts();
-
 // TODO: рефакторить
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {

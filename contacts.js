@@ -2,8 +2,8 @@ const fs = require("fs/promises");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
-const contactsPath = path.resolve("./db/contacts.json");
-
+const contactsPath = path.join(__dirname, "db", "contacts.json");
+console.log("sadas", contactsPath);
 const updateContacts = async (contact) => {
   await fs.writeFile(contactsPath, JSON.stringify(contact, null, 2));
 };
@@ -60,7 +60,8 @@ async function addContact(name, email, phone) {
       email,
       phone,
     };
-    updateContacts(contacts);
+    const newContacts = [...contacts, newContact];
+    updateContacts(newContacts);
     console.log(`Contact with name="${name}" was added to database.`);
     return newContact;
   } catch (error) {
