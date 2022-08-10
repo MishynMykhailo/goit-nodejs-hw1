@@ -56,4 +56,11 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-invokeAction(argv);
+const startInvoke = async (argv) => {
+  try {
+    await invokeAction(argv);
+  } catch (error) {
+    console.log(error);
+  }
+};
+startInvoke(argv);
